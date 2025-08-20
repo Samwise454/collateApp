@@ -13,7 +13,8 @@ body {
   height: 100vh;
 }
 .navMenu {
-  background-image: linear-gradient(to right, #020169, #020137);
+  background-image: linear-gradient(to right, #02015c, #020137);
+  /* background-image: linear-gradient(to bottom, #0d1117, #1c1f26); */
   color: white;
   padding: 1rem;
   display: grid;
@@ -132,6 +133,29 @@ main {
 }
 #controlMsg, #searchMsg {
   display: none;
+}
+.pollCard:nth-child(even) {
+  background-color: lightgray;
+  border: none;
+}
+.pollDiv {
+  cursor: pointer;
+}
+.partyDiv {
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(16, 1fr);
+  gap: 10px;
+}
+.barDiv {
+  height: 100%;
+}
+.bar {
+  height: 600px;
+  border-radius: 5px;
+}
+.bar:nth-child(odd) {
+  background-image: linear-gradient(to bottom, #00bc90, #5c0101);
 }
 
 

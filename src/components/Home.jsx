@@ -2,9 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Nav from './Nav';
 import Footer from './Footer';
+import Poll from './Poll';
+import Ward from './Ward';
+import Lga from './Lga';
+import Party from './Party';
+import Prediction from './Prediction';
 
 const Home = () => {
     const url = 'https://collate.esbatech.org/home.php';
+
+    const [homeKey, setHomKey] = useState("");
 
     //countdown timer
     // useEffect(() => {
@@ -47,7 +54,11 @@ const Home = () => {
     //     }
     // }, [expire]);
 
-
+    const handleData = (e) => {
+        let btnKey = e.target.id;
+        setHomKey(btnKey);
+    }
+    
   return (
     <div className='mainForm1 relative'>
       <Nav></Nav>
@@ -57,32 +68,49 @@ const Home = () => {
                 <p className='text-sm text-center mt-4 text-white'>Filter By:</p>
 
                 <section className='sideMenu text-center mt-5 flex flex-col px-2'>
-                    <button className='sideMenuBtn mb-15 cursor-pointer border-2 border-white text-white rounded-full py-4 px-2'>
+                    <button onClick={handleData} id='punit' className='sideMenuBtn mb-15 cursor-pointer border-2 border-white text-white rounded-full py-4 px-2'>
                         Poll Unit
                     </button>
 
-                    <button className='sideMenuBtn mb-15 cursor-pointer border-2 border-white text-white rounded-full py-4 px-2'>
+                    <button onClick={handleData} id='ward' className='sideMenuBtn mb-15 cursor-pointer border-2 border-white text-white rounded-full py-4 px-2'>
                         Wards
                     </button>
 
-                    <button className='sideMenuBtn mb-15 cursor-pointer border-2 border-white text-white rounded-full py-4 px-2'>
+                    <button onClick={handleData} id='lgah' className='sideMenuBtn mb-15 cursor-pointer border-2 border-white text-white rounded-full py-4 px-2'>
                         LGA
                     </button>
 
-                    <button className='sideMenuBtn mb-15 cursor-pointer border-2 border-white text-white rounded-full py-4 px-2'>
-                        General
+                    <button onClick={handleData} id='party' className='sideMenuBtn mb-15 cursor-pointer border-2 border-white text-white rounded-full py-4 px-2'>
+                        Party
                     </button>
 
-                    <button className='sideMenuBtn mb-15 cursor-pointer border-2 border-white text-white rounded-full py-4 px-2'>
+                    <button onClick={handleData} id='pred' className='sideMenuBtn mb-15 cursor-pointer border-2 border-white text-white rounded-full py-4 px-2'>
                         Prediction
                     </button>
                 </section>
             </div>
 
             <div className='mainDisplay'>
-
+                {homeKey === "punit" ?
+                    <Poll></Poll>
+                :
+                    homeKey === "ward" ?
+                        <Ward></Ward>
+                    :
+                        homeKey === "lgah" ?
+                            <Lga></Lga>
+                        :
+                            homeKey === "party" || homeKey === "" ?
+                                <Party></Party>
+                            :
+                                homeKey === "pred" ?
+                                    <Prediction></Prediction>
+                                :
+                                    <></>
+                }
             </div>
         </main>
+
         <Footer></Footer>
     </div>
   )
